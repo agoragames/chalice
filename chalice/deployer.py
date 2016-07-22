@@ -330,13 +330,13 @@ class Deployer(object):
                     print action
             self._prompter.confirm("\nWould you like to continue? ",
                                    default=True, abort=True)
-        iam = self._client('iam')
-        iam.delete_role_policy(RoleName=app_name,
-                               PolicyName=app_name)
-        iam.put_role_policy(RoleName=app_name,
-                            PolicyName=app_name,
-                            PolicyDocument=json.dumps(app_policy, indent=2))
-        self._record_policy(config, app_policy)
+            iam = self._client('iam')
+            iam.delete_role_policy(RoleName=app_name,
+                                   PolicyName=app_name)
+            iam.put_role_policy(RoleName=app_name,
+                                PolicyName=app_name,
+                                PolicyDocument=json.dumps(app_policy, indent=2))
+            self._record_policy(config, app_policy)
 
     def _get_policy_from_source_code(self, config):
         if config['autogen_policy']:
